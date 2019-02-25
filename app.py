@@ -1,11 +1,12 @@
 import flask
+from flask import request, jsonify
 
 app = flask.Flask(__name__)
-app.config["DEBUG"] = True
 
-
-@app.route('/', methods=['GET'])
+@app.route('/', methods=['GET','POST'])
 def home():
+    if request.method == 'POST':
+        print("peticion " + str(request.form))
     return "<h1>Distant Reading Archive</h1><p>This site is a prototype API for distant reading of science fiction novels.</p>"
 
 if __name__ == '__main__':
