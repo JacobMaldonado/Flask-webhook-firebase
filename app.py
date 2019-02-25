@@ -7,7 +7,7 @@ app = flask.Flask(__name__)
 def home():
     if request.method == 'POST':
         print("peticion " + str(request.form))
-        print("datos" + request.json)
+        print("datos" + jsonify(request.json))
     return "<h1>Distant Reading Archive</h1><p>This site is a prototype API for distant reading of science fiction novels.</p>"
 
 if __name__ == '__main__':
