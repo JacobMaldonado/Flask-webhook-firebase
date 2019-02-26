@@ -63,14 +63,16 @@ def generateResponse(sessionPath):
                     "param": "param value"
                   }
                 }
-              ],
-              "followupEventInput": {
-                "name": "event name",
-                "languageCode": "en-US",
-                "parameters": {
-                  "param": "param value"
-                }
-              }
+              ]
+##              ,
+##              "followupEventInput": {
+##                "name": "event name",
+##                "languageCode": "en-US",
+##                "parameters": {
+##                  "param": "param value"
+##                }
+##              }
+              
             }
 
 if __name__ == '__main__':
