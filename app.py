@@ -50,6 +50,7 @@ def home():
     if request.method == 'POST':
         print("peticion " + str(request.form))
         print("datos" + str(request.json))
+        return jsonify(response)
     return "<h1>Distant Reading Archive</h1><p>This site is a prototype API for distant reading of science fiction novels.</p>"
 
 
