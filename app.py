@@ -13,9 +13,9 @@ def home():
     if request.method == 'POST':
         print("peticion " + str(request.form))
         print("datos" + str(request.json))
-        return jsonify(generateResponse(request.json.responseId,
-                                        request.json.queryResult.intent.name,
-                                        request.json.queryResult.intent.displayName))
+        return jsonify(generateResponse(request.json["responseId"],
+                                        request.json["queryResult"]["intent"]["name"],
+                                        request.json["queryResult"]["intent"]["displayName"]))
     return "<h1>Distant Reading Archive</h1><p>This site is a prototype API for distant reading of science fiction novels.</p>"
 
 def generateResponse(responseId, intentPath, intentName):
