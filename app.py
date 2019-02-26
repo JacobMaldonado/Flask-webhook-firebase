@@ -13,55 +13,65 @@ def home():
     if request.method == 'POST':
         print("peticion " + str(request.form))
         print("datos" + str(request.json))
-        return jsonify(generateResponse(request.json["responseId"],
-                                        request.json["queryResult"]["intent"]["name"],
-                                        request.json["queryResult"]["intent"]["displayName"]))
+        return jsonify(generateResponse(request.json["session"]))
     return "<h1>Distant Reading Archive</h1><p>This site is a prototype API for distant reading of science fiction novels.</p>"
 
-def generateResponse(responseId, intentPath, intentName):
-    print("responseId: " + responseId
-          + "\nintentPath: " + intentPath
-          + "intentName: " + intentName)
+def generateResponse(sesionPath):
     return {
-      "responseId": responseId,
-      "session": "projects/" + PROJECT_ID + "/agent/sessions/" + responseId,
-      "queryResult": {
-        "queryText": "user's original query to your agent",
-        "parameters": {
-          "param": "param value"
-        },
-        "allRequiredParamsPresent": True,
-        "fulfillmentText": "Text defined in Dialogflow's console for the intent that was matched",
-        "fulfillmentMessages": [
-          {
-            "text": {
-              "text": [
-                "Text defined in Dialogflow's console for the intent that was matched"
-              ]
+              "fulfillmentText": "This is a text response",
+              "fulfillmentMessages": [
+                {
+                  "card": {
+                    "title": "card title",
+                    "subtitle": "card text",
+                    "imageUri": "https://assistant.google.com/static/images/molecule/Molecule-Formation-stop.png",
+                    "buttons": [
+                      {
+                        "text": "button text",
+                        "postback": "https://assistant.google.com/"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "source": "example.com",
+              "payload": {
+                "google": {
+                  "expectUserResponse": True,
+                  "richResponse": {
+                    "items": [
+                      {
+                        "simpleResponse": {
+                          "textToSpeech": "this is a simple response"
+                        }
+                      }
+                    ]
+                  }
+                },
+                "facebook": {
+                  "text": "Hello, Facebook!"
+                },
+                "slack": {
+                  "text": "This is a text response for Slack."
+                }
+              },
+              "outputContexts": [
+                {
+                  "name": sesion + "/contexts/contextName",
+                  "lifespanCount": 5,
+                  "parameters": {
+                    "param": "param value"
+                  }
+                }
+              ],
+              "followupEventInput": {
+                "name": "event name",
+                "languageCode": "en-US",
+                "parameters": {
+                  "param": "param value"
+                }
+              }
             }
-          }
-        ],
-        "outputContexts": [
-          {
-            "name": "projects/" + PROJECT_ID + "/agent/sessions/" + responseId + "/contexts/generic",
-            "lifespanCount": 5,
-            "parameters": {
-              "param": "param value"
-            }
-          }
-        ],
-        "intent": {
-          "name": intentPath,
-          "displayName": intentName
-        },
-        "intentDetectionConfidence": 1,
-        "diagnosticInfo": {},
-        "languageCode": "es"
-      },
-      "originalDetectIntentRequest": {}
-    }
-
-
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
