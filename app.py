@@ -19,6 +19,9 @@ def home():
     return "<h1>Distant Reading Archive</h1><p>This site is a prototype API for distant reading of science fiction novels.</p>"
 
 def generateResponse(responseId, intentPath, intentName):
+    print("responseId: " + responseId
+          + "\nintentPath: " + intentPath
+          + "intentName: " + intentName)
     return {
       "responseId": responseId,
       "session": "projects/" + PROJECT_ID + "/agent/sessions/" + responseId,
