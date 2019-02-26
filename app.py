@@ -16,7 +16,7 @@ def home():
         return jsonify(generateResponse(request.json["session"]))
     return "<h1>Distant Reading Archive</h1><p>This site is a prototype API for distant reading of science fiction novels.</p>"
 
-def generateResponse(sesionPath):
+def generateResponse(sessionPath):
     return {
               "fulfillmentText": "This is a text response",
               "fulfillmentMessages": [
@@ -57,7 +57,7 @@ def generateResponse(sesionPath):
               },
               "outputContexts": [
                 {
-                  "name": sesion + "/contexts/contextName",
+                  "name": sessionPath + "/contexts/contextName",
                   "lifespanCount": 5,
                   "parameters": {
                     "param": "param value"
